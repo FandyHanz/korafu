@@ -8,4 +8,4 @@ tutorial:
 3, tunggu proses selesai
 4, done selamat mengerjakan
 REMEMBER
-work as yours role don't, pick your team mate :<
+work as yours role don't, pick your team mate job  :<
