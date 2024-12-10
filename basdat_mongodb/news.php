@@ -1,5 +1,8 @@
 <?php
-include 'vendor/autoload.php'
+include 'db.php';
+include 'vendor/autoload.php';
+$db = connectToMongoDB();
+$newsCollection = $db->news;
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,10 +30,6 @@ include 'vendor/autoload.php'
 
     <div class="container mt-5 p-5 main-con">
         <?php
-        include 'db.php';
-        $db = connectToMongoDB();
-        $newsCollection = $db->news;
-
         $id = isset($_GET['id']) ? $_GET['id'] : '';
         $article = $newsCollection->findOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
 
@@ -46,12 +45,11 @@ include 'vendor/autoload.php'
             echo '<h1>Berita tidak ditemukan.</h1>';
         }
         ?>
-    </div>
-
-    <div class="container mt-5 p-2">
-        <?php 
-        if ($article) {
-            echo '<h4>Komentar</h4>
+        <div>
+            <div class="container mt-5 p-2">
+                <?php
+                if ($article) {
+                    echo '<h4>Komentar</h4>
             <form action="comment-procces.php" method="post">
                 <div>
                     <div class="input-group mb-3">
@@ -63,9 +61,11 @@ include 'vendor/autoload.php'
                 </div>
             </form>
             ';
-        }
-        ?>
-    </div>
+                }
+                ?>
+            </div>
 </body>
 
 </html>
+</div>
+</div>
