@@ -1,0 +1,10 @@
+.main-con{
+    border: solid #717171 2px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.sidebar {
+    background-color: #f8f9fa;
+    height: 100vh;
+}

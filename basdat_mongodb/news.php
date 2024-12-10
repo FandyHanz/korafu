@@ -1,3 +1,6 @@
+<?php
+include 'vendor/autoload.php'
+?>
 <!DOCTYPE html>
 <html>
 
@@ -6,6 +9,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>KoraNews - Detail Berita</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -21,7 +25,7 @@
         </div>
     </nav>
 
-    <div class="container mt-5">
+    <div class="container mt-5 p-5 main-con">
         <?php
         include 'db.php';
         $db = connectToMongoDB();
@@ -31,11 +35,34 @@
         $article = $newsCollection->findOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
 
         if ($article) {
-            echo '<h1>' . $article['title'] . '</h1>';
-            echo '<p><small>' . $article['date']->toDateTime()->format('Y-m-d') . '</small></p>';
-            echo '<p>' . $article['content'] . '</p>';
+            echo '<h1>' . $article['judul'] . '</h1>';
+            echo '<b>Ditulis oleh ' . $article['author'] . '</b>';
+            echo '<p><small>Dibuat pada: ' . $article['createdAt']->toDateTime()->format('Y-m-d') . '</small><br>
+            <small>Terakhir diubah pada: ' . $article['updatedAt']->toDateTime()->format('Y-m-d') . '</small></p>';
+
+            echo '<hr>';
+            echo '<p>' . $article['isi'] . '</p>';
         } else {
             echo '<h1>Berita tidak ditemukan.</h1>';
+        }
+        ?>
+    </div>
+
+    <div class="container mt-5 p-2">
+        <?php 
+        if ($article) {
+            echo '<h4>Komentar</h4>
+            <form action="comment-procces.php" method="post">
+                <div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1" name="nama">Nama</span>
+                        <input type="text" class="form-control" placeholder="John Doe" aria-label="Username" name="user">
+                </div>
+                    <textarea class="form-control" name="isi" aria-label="With textarea" style="max-height: 250px; min-height: 50px;"></textarea><br>
+                    <button class="btn btn-primary" type="submit">Komentari</button>
+                </div>
+            </form>
+            ';
         }
         ?>
     </div>

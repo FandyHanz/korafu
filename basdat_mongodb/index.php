@@ -10,7 +10,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src='main.js'></script>
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -33,22 +32,22 @@
                 <!--Pindahin ini ke sidebar.php, semua file penting connect ke style.css
                 kaya search, index admin, news, dll-->
                 <div class="sidebar p-4">
-                    <h4 class="mb-4">features</h4>
                     <ul class="nav nav-pills flex-column mb-auto">
                         <div class="container mt-5">
-                            <h3>kategori</h3>
+                            <h3>Filter Berita</h3>
                             <form method="POST" action="category.php">
                                 <div class="form-group">
-                                    <label for="category">Select Category:</label>
+                                    <label for="category">Pilih Kategori:</label>
                                     <select name="category" id="category" class="form-control">
-                                        <option value="sejarah">sejarah</option>
-                                        <option value="politik">politik</option>
-                                        <option value="budaya">budaya</option>
+                                        <option value="Sejarah">Sejarah</option>
+                                        <option value="Politik">Politik</option>
+                                        <option value="Budaya">Budaya</option>
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Filter</button>
                             </form>
                         </div>
+                        <br><br>
                         <div class="dropdown">
                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 About

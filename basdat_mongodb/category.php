@@ -3,11 +3,11 @@ require 'vendor/autoload.php';
 require 'db.php';
 $db = connectToMongoDB();
 $newsCollection = $db->news;
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $category = $_POST['category'];
-    $blank = [];
-    $filter = ['category' => $category];
-    $documents = $newsCollection->find($blank, $filter);
+    $filter = ['tema' => $category];
+    $documents = $newsCollection->find($filter);
     $newsArray = iterator_to_array($documents);
 }
 ?>
@@ -41,9 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <?php
             if (count($newsArray) == 0) {
-                echo "<li class='list-group-item'>No results found.</li>";
+                echo "<li class='list-group-item'>No results found on the " . $category . ".</li>";
             } else {
-                foreach ($documents as $document) {
+                foreach ($newsArray as $document) {
                     echo '<a href="news.php?id=' . $document['_id'] . '" class="list-group-item list-group-item-action">';
                     echo '<h5 class="mb-1">' . htmlspecialchars($document['judul']) . '</h5>';
                     echo '<p class="mb-1">' . htmlspecialchars($document['sinopsis']) . '</p>';
